@@ -28,7 +28,7 @@ export default function App()
 
   function fetchSessionData(){
     try{
-      fetch(`${import.meta.env.VITE_API_URL}api/session-info`, {
+      fetch(`${import.meta.env.VITE_API_URL}/api/session-info`, {
         credentials: "include"
       })
       .then((res) => res.json())
