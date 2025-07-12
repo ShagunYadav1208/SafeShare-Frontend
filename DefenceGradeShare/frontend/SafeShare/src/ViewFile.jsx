@@ -99,10 +99,10 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
                 body: formData,
                 credentials: "include"
             })
-            const result = await response.json()
-            if (!response.ok) {
-                throw new Error("Server error during download.");
-            }
+            // const result = await response.json()
+            // if (!response.ok) {
+            //     throw new Error("Server error during download.");
+            // }
 
             const blob = await response.blob();
 
@@ -114,10 +114,10 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
-            if(result.redirectTo){
-                navigate(`/${result.redirectTo}`)
-            }
-            return result
+            // if(result.redirectTo){
+            //     navigate(`/${result.redirectTo}`)
+            // }
+            // return result
         }
         catch(err){
             console.error("Download Error:", err);
