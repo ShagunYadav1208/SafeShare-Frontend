@@ -88,27 +88,27 @@ export default function DownloadViaLink({ sessionData }){
                 credentials: "include"
             })
             const result = await response.json()
-            if(result.success){
-                console.log("Downloading", result.fileType, result.fileName)
-                const bytes = new Uint8Array(result.arrayBuffer.data)
-                const binary = Array.from(bytes).map(byte => String.fromCharCode(byte)).join('')
-                let base64 = window.btoa(binary)
-                base64 = `data:${result.fileType};base64,${base64}`
-
-                const link = document.createElement("a")
-                link.href = base64
-                link.download = result.fileName
-                link.style.display = "none"
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
+            if (!response.ok) {
+                throw new Error("Server error during download.");
             }
+
+            const blob = await response.blob();
+
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
             if(result.redirectTo){
                 navigate(`/${result.redirectTo}`)
             }
             return result
         }
         catch(err){
+            console.error("Download Error:", err);
             return { message: "Falied to Download File." + err }
         }
     }

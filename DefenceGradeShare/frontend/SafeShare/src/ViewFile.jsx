@@ -16,7 +16,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
     const [backLink, setBackLink] = useState("")
     const [copied, setCopied] = useState(false)
 
-    const fileURL = sessionData.mainURL + `/PreviewFile/${viewFileData._id}`
+    const fileURL = viewFileData.downloadURL || viewFileData.gofileUrl || viewFileData.imagekitUrl || `${sessionData.mainURL}/PreviewFile/${viewFileData._id}`
 
     useEffect(() => {
         if(source == "SharedWithMe"){
@@ -92,6 +92,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
     async function DownloadFile(){
         const formData = new FormData()
         formData.append("_id", viewFileData._id)
+
         try{
             const response = await fetch(sessionData.mainURL + "/DownloadFile", {
                 method: "POST",
@@ -99,27 +100,27 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
                 credentials: "include"
             })
             const result = await response.json()
-            if(result.success){
-                console.log("Downloading", result.fileType, result.fileName)
-                const bytes = new Uint8Array(result.arrayBuffer.data)
-                const binary = Array.from(bytes).map(byte => String.fromCharCode(byte)).join('')
-                let base64 = window.btoa(binary)
-                base64 = `data:${result.fileType};base64,${base64}`
-
-                const link = document.createElement("a")
-                link.href = base64
-                link.download = result.fileName
-                link.style.display = "none"
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
+            if (!response.ok) {
+                throw new Error("Server error during download.");
             }
+
+            const blob = await response.blob();
+
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = viewFileData.name;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            window.URL.revokeObjectURL(url);
             if(result.redirectTo){
                 navigate(`/${result.redirectTo}`)
             }
             return result
         }
         catch(err){
+            console.error("Download Error:", err);
             return { message: "Falied to Download File." + err }
         }
     }
