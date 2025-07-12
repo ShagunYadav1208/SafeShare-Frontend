@@ -1,12 +1,11 @@
 import style from './DownloadViaLink.module.css'
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Download from './Download'
 import { useEffect } from 'react'
 import { useCallback } from 'react'
 
 export default function DownloadViaLink({ sessionData }){
-    const navigate = useNavigate()
     const [showDownload, setShowDownload] = useState(false)
     const { hash } = useParams()
     const [type, setType] = useState(undefined)
@@ -87,10 +86,10 @@ export default function DownloadViaLink({ sessionData }){
                 body: formData,
                 credentials: "include"
             })
-            const result = await response.json()
-            if (!response.ok) {
-                throw new Error("Server error during download.");
-            }
+            // const result = await response.json()
+            // if (!response.ok) {
+            //     throw new Error("Server error during download.");
+            // }
 
             const blob = await response.blob();
 
@@ -102,10 +101,10 @@ export default function DownloadViaLink({ sessionData }){
             a.click();
             a.remove();
             window.URL.revokeObjectURL(url);
-            if(result.redirectTo){
-                navigate(`/${result.redirectTo}`)
-            }
-            return result
+            // if(result.redirectTo){
+            //     navigate(`/${result.redirectTo}`)
+            // }
+            // return result
         }
         catch(err){
             console.error("Download Error:", err);
