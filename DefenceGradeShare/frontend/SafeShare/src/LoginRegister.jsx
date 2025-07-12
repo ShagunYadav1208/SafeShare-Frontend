@@ -27,7 +27,7 @@ export default function LoginRegister({setDisplayLogin, sessionData, fetchSessio
             try{
                 formData.append("frontendURL", window.location.origin)
                 const response = await fetch(sessionData.mainURL + "/Register", {
-                    method: "post",
+                    method: "POST",
                     body: formData,
                     credentials: "include"
                 })
@@ -45,7 +45,7 @@ export default function LoginRegister({setDisplayLogin, sessionData, fetchSessio
         let email = formData.get("email")
         let password = formData.get("password")
         try{
-            const response = await fetch(sessionData.mainURL + "/Login", {
+            const response = await fetch(sessionData.mainURL + "/api/login", {
                 method: "post",
                 body: formData,
                 credentials: "include"
