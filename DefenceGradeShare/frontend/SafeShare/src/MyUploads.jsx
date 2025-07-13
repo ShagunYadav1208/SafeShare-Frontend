@@ -42,19 +42,19 @@ export default function MyUploads({ sessionData }){
     }, [params.id])
 
     const fetchMyUploadsData = useCallback(async() => {
-        if (!sessionData.mainURL) return;
+        if (!sessionData.mainURL) return
         try{
             const response = await fetch(`${sessionData.mainURL}/api/MyUploads${_id ? `/${_id}` : ''}`, {
                 credentials: "include",
             })
             const result = await response.json()
+            if(!result.success && result.redirectTo){
+                navigate(`/${result.redirectTo}`)
+            }
             setFolderName(result.folderName || "")
             setUploaded(result.uploaded || [])
             setCreatedAt(result.createdAt || "")
             setParentId(result.parentId || "")
-            if(!result.success && result.redirectTo){
-                navigate(`/${result.redirectTo}`)
-            }
             console.log("MyUploads are fetched")
         }
         catch(err){
