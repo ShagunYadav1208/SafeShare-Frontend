@@ -41,10 +41,10 @@ export default function MyUploads({ sessionData }){
         }
     }, [params.id])
 
-    const fetchMyUploadsData = useCallback(async() => {
+    const fetchMyUploadsData = useCallback(async(folderId) => {
         if (!sessionData.mainURL) return
         try{
-            const response = await fetch(`${sessionData.mainURL}/api/MyUploads${_id ? `/${_id}` : ''}`, {
+            const response = await fetch(`${sessionData.mainURL}/api/MyUploads${folderId ? `/${folderId}` : ''}`, {
                 credentials: "include",
             })
             const result = await response.json()
@@ -55,17 +55,20 @@ export default function MyUploads({ sessionData }){
             setUploaded(result.uploaded || [])
             setCreatedAt(result.createdAt || "")
             setParentId(result.parentId || "")
+            setId(result._id || "")
             console.log("MyUploads are fetched")
         }
         catch(err){
             console.log("Failed to Fetch")
             return { message: "MyUploads data cannot be fetched" + err }
         }
-    }, [sessionData.mainURL, _id, navigate])
+    }, [sessionData.mainURL, navigate])
 
     useEffect(() => {
-        fetchMyUploadsData()
-    }, [sessionData.mainURL, _id, navigate, fetchMyUploadsData])
+        const folderId = params.id || "";
+        setId(folderId);
+        fetchMyUploadsData(folderId)
+    }, [params.id, fetchMyUploadsData])
 
     function GetFolderSize(files){
         return files.reduce((total, file) => {
@@ -113,7 +116,6 @@ export default function MyUploads({ sessionData }){
     async function GoToFolder(id, type){
         setType(type)
         navigate(`/myUploads/${id}`)
-        window.location.reload()
     }
 
     async function handleUpload(formData){
