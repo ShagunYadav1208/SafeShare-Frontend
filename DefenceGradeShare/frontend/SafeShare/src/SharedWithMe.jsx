@@ -28,7 +28,7 @@ export default function SharedWithMe({ sessionData }){
     const fetchMyUploadsData = useCallback(async() => {
         if (!sessionData.mainURL) return;
         try{
-            const response = await fetch(`${sessionData.mainURL}/SharedWithMe${_id ? `/${_id}` : ''}`, {
+            const response = await fetch(`${sessionData.mainURL}/api/SharedWithMe${_id ? `/${_id}` : ''}`, {
                 credentials: "include",
             });
             const result = await response.json()
@@ -86,7 +86,7 @@ export default function SharedWithMe({ sessionData }){
 
         try{
 
-            const response = await fetch(sessionData.mainURL + "/DeleteSharedDirectory", {
+            const response = await fetch(sessionData.mainURL + "/api/DeleteSharedDirectory", {
                 method: "POST",
                 body: formData,
                 credentials: "include"

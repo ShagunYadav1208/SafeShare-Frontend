@@ -21,7 +21,7 @@ export default function ResetPassword({sessionData}){
             try{
                 formData.append("email", email)
                 formData.append("reset_token", reset_token)
-                const response = await fetch(sessionData.mainURL + "/ResetPassword", {
+                const response = await fetch(sessionData.mainURL + "/api/ResetPassword", {
                     method: "post",
                     body: formData,
                     credentials: "include"

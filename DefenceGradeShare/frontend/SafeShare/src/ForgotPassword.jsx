@@ -8,7 +8,7 @@ export default function ForgotPassword({sessionData}){
         let email = formData.get("email")
         try{
             formData.append("frontendURL", window.location.origin)
-            const response = await fetch(sessionData.mainURL + "/SendRecoveryLink", {
+            const response = await fetch(sessionData.mainURL + "/api/SendRecoveryLink", {
                 method: "post",
                 body: formData,
                 credentials: "include"

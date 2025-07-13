@@ -40,10 +40,11 @@ export default function MyUploads({ sessionData }){
             setType("")
         }
     }, [params.id])
+
     const fetchMyUploadsData = useCallback(async() => {
         if (!sessionData.mainURL) return;
         try{
-            const response = await fetch(`${sessionData.mainURL}/MyUploads${_id ? `/${_id}` : ''}`, {
+            const response = await fetch(`${sessionData.mainURL}/api/MyUploads${_id ? `/${_id}` : ''}`, {
                 credentials: "include",
             })
             const result = await response.json()
@@ -61,9 +62,11 @@ export default function MyUploads({ sessionData }){
             return { message: "MyUploads data cannot be fetched" + err }
         }
     }, [sessionData.mainURL, _id, navigate])
+
     useEffect(() => {
         fetchMyUploadsData()
     }, [sessionData.mainURL, _id, navigate, fetchMyUploadsData])
+
     function GetFolderSize(files){
         return files.reduce((total, file) => {
             return file.type === "folder"
@@ -71,6 +74,7 @@ export default function MyUploads({ sessionData }){
             : total + (file.size || 0)
         }, 0)
     }
+
     function FormatBytes(bytes){
         if(bytes === 0){
             return "0 Bytes"
@@ -81,13 +85,14 @@ export default function MyUploads({ sessionData }){
         const i = Math.floor(Math.log(bytes) / Math.log(k))
         return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i]
     }
+
     async function handleCreateFolder(folderName){
         const formData = new FormData()
         formData.append("name", folderName)
         formData.append("_id", _id)
 
         try{
-            const response = await fetch(sessionData.mainURL + "/CreateFolder", {
+            const response = await fetch(sessionData.mainURL + "/api/CreateFolder", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -104,15 +109,17 @@ export default function MyUploads({ sessionData }){
             return { message: "Folder Creation Failed." + err }
         }
     }
+
     async function GoToFolder(id, type){
         setType(type)
         navigate(`/myUploads/${id}`)
     }
+
     async function handleUpload(formData){
         formData.append("_id", _id)
 
         try{
-            const response = await fetch(sessionData.mainURL + "/UploadFile", {
+            const response = await fetch(sessionData.mainURL + "/api/UploadFile", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -129,18 +136,20 @@ export default function MyUploads({ sessionData }){
             return { message: "Upload Failed." + err }
         }
     }
+
     async function GoToFile(singleFile){
         setViewFileData(singleFile)
         setType(singleFile.type)
         navigate(`/myUploads/${singleFile._id}`)
         setShowFile(true)
     }
+
     async function DeleteFolder(){
         const formData = new FormData()
         formData.append("_id", _id)
         formData.append("parentId", parentId)
         try{
-            const response = await fetch(sessionData.mainURL + "/DeleteDirectory", {
+            const response = await fetch(sessionData.mainURL + "/api/DeleteDirectory", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -156,9 +165,10 @@ export default function MyUploads({ sessionData }){
             return { message: "Failed to Delete the File." + err }
         }
     }
+
     async function SearchUser(formData){
         try{
-            const response = await fetch(sessionData.mainURL + "/GetUser", {
+            const response = await fetch(sessionData.mainURL + "/api/GetUser", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -174,11 +184,12 @@ export default function MyUploads({ sessionData }){
             return { email: formData.get("email"), message: "User Search Failed " + err }
         }
     }
+    
     async function SafeShare(formData){
         formData.append("_id", _id)
         formData.append("type", type)
         try{
-            const response = await fetch(sessionData.mainURL + "/Share", {
+            const response = await fetch(sessionData.mainURL + "/api/Share", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -196,11 +207,12 @@ export default function MyUploads({ sessionData }){
             return { formData, message: "SafeShare Failed" + err }
         }
     }
+
     async function GetSharedWithData(){
         try{
             const formData = new FormData()
             formData.append("_id", _id)
-            const response = await fetch(sessionData.mainURL + "/GetFileSharedWith", {
+            const response = await fetch(sessionData.mainURL + "/api/GetFileSharedWith", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -221,7 +233,7 @@ export default function MyUploads({ sessionData }){
         try{
             const formData = new FormData()
             formData.append("_id", id)
-            const response = await fetch(sessionData.mainURL + "/RemoveSharedAccess", {
+            const response = await fetch(sessionData.mainURL + "/api/RemoveSharedAccess", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -241,7 +253,7 @@ export default function MyUploads({ sessionData }){
     async function RenameFolder(formData){
         formData.append("_id", _id)
         try{
-            const response = await fetch(sessionData.mainURL + "/RenameFolder", {
+            const response = await fetch(sessionData.mainURL + "/api/RenameFolder", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -260,6 +272,7 @@ export default function MyUploads({ sessionData }){
             return { message: "Failed to Rename Folder." + err }
         }
     }
+    
     return(
         <div>
             {

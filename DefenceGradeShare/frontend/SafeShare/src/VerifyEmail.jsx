@@ -17,7 +17,7 @@ export default function VerifyEmail({sessionData}){
     const Verify = () => {
         startTransition(async() => {
             try{
-                const response = await fetch(sessionData.mainURL + `/verifyEmail/${email}/${verification_token}`)
+                const response = await fetch(sessionData.mainURL + `/api/verifyEmail/${email}/${verification_token}`)
                 const result = await response.json()
                 setStatus({
                     success: result.success,

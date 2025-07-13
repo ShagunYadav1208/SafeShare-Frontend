@@ -19,7 +19,7 @@ export default function DownloadViaLink({ sessionData }){
     const fetchDownloadsData = useCallback(async() => {
         if (!sessionData.mainURL) return
         try{
-            const response = await fetch(`${sessionData.mainURL}/FetchPublicDownload/${hash}`, {
+            const response = await fetch(`${sessionData.mainURL}/api/FetchPublicDownload/${hash}`, {
                 method: "GET",
                 credentials: "include",
             })
@@ -81,7 +81,7 @@ export default function DownloadViaLink({ sessionData }){
         const formData = new FormData()
         formData.append("hash", hash)
         try{
-            const response = await fetch(sessionData.mainURL + "/DownloadPublicLink", {
+            const response = await fetch(sessionData.mainURL + "/api/DownloadPublicLink", {
                 method: "POST",
                 body: formData,
                 credentials: "include"

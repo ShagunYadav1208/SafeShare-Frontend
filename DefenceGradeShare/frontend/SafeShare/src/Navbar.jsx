@@ -27,7 +27,7 @@ export default function Navbar({ setDisplayLogin, sessionData, fetchSessionData 
     }
     const handleLogout = async() => {
         try{
-            const response = await fetch(sessionData.mainURL + "/Logout", {
+            const response = await fetch(sessionData.mainURL + "/api/Logout", {
                 methond: "GET",
                 credentials: "include"
             })

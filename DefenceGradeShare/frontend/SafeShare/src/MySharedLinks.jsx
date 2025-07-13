@@ -26,7 +26,7 @@ export default function MySharedLinks({ sessionData }){
     const fetchMyUploadsData = useCallback(async() => {
         if (!sessionData.mainURL) return;
         try{
-            const response = await fetch(`${sessionData.mainURL}/MySharedLinks`, {
+            const response = await fetch(`${sessionData.mainURL}/api/MySharedLinks`, {
                 credentials: "include",
             });
             const result = await response.json()

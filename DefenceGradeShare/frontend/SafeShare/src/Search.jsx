@@ -51,7 +51,7 @@ export default function Serach({ sessionData }){
         const searchText = formData.get("search")
         console.log(searchText)
         try{
-            const response = await fetch(`${sessionData.mainURL}/Search?search=${encodeURIComponent(searchText)}`, {
+            const response = await fetch(`${sessionData.mainURL}/api/Search?search=${encodeURIComponent(searchText)}`, {
                 method: "GET",
                 credentials: "include"
             })

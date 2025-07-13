@@ -71,7 +71,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
         formData.append("_id", viewFileData._id)
         formData.append("parentId", parentId)
         try{
-            const response = await fetch(sessionData.mainURL + (source == "SharedWithMe" ? "/DeleteSharedFile" : "/DeleteFile"), {
+            const response = await fetch(sessionData.mainURL + (source == "SharedWithMe" ? "/api/DeleteSharedFile" : "/api/DeleteFile"), {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -94,7 +94,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
         formData.append("_id", viewFileData._id)
 
         try{
-            const response = await fetch(sessionData.mainURL + "/DownloadFile", {
+            const response = await fetch(sessionData.mainURL + "/api/DownloadFile", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -128,7 +128,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
     async function RenameFile(formData){
         formData.append("_id", viewFileData._id)
         try{
-            const response = await fetch(sessionData.mainURL + "/RenameFile", {
+            const response = await fetch(sessionData.mainURL + "/api/RenameFile", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -154,7 +154,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
         formData.append("frontendURL", window.location.origin)
 
         try{
-            const response = await fetch(sessionData.mainURL + "/ShareViaLink", {
+            const response = await fetch(sessionData.mainURL + "/api/ShareViaLink", {
                 method: "POST",
                 body: formData,
                 credentials: "include"
@@ -174,7 +174,7 @@ export default function ViewFile({ sessionData, viewFileData, setShowFile, paren
         const formData = new FormData()
         formData.append("_id", file_id)
         try{
-            const response = await fetch(sessionData.mainURL + "/DeleteLink", {
+            const response = await fetch(sessionData.mainURL + "/api/DeleteLink", {
                 method: "POST",
                 body: formData,
                 credentials: "include"

@@ -26,7 +26,7 @@ export default function LoginRegister({setDisplayLogin, sessionData, fetchSessio
         else{
             try{
                 formData.append("frontendURL", window.location.origin)
-                const response = await fetch(sessionData.mainURL + "/Register", {
+                const response = await fetch(sessionData.mainURL + "/api/Register", {
                     method: "POST",
                     body: formData,
                     credentials: "include"
