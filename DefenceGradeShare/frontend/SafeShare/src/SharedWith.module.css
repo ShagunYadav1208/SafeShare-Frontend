@@ -75,3 +75,37 @@
 {
     background: black;
 }
+
+/* ✅ Responsive Styles for SharedWith Component */
+@media (max-width: 768px) {
+  .formBox h2 {
+    font-size: 1.5rem;
+  }
+
+  /* .table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: 0;
+  } */
+   
+
+  .table th,
+  .table td {
+    font-size: 0.9rem;
+    padding: 8px 10px;
+  }
+
+  .deleteBtn {
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    height: auto;
+  }
+
+  .iconClose {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+}

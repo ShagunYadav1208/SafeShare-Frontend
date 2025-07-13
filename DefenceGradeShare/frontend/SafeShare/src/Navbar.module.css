@@ -161,3 +161,104 @@
 .logout:hover{
     color: red;
 }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.bar {
+  height: 3px;
+  background-color: white;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 20px;
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 1.6em;
+    text-align: left;
+    width: 100%;
+  }
+
+  .navigation {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .link,
+  .navigation .btnLoginPopup,
+  .dropdownToggle {
+    margin: 10px 0;
+    width: 100%;
+    font-size: 1em;
+  }
+
+  .dropdownToggle {
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  .dropdownMenu {
+    position: static;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+
+  .dropdownMenu a {
+    padding: 12px 16px;
+    font-size: 1em;
+    color: white;
+  }
+
+  .dropdownMenu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .hamburger {
+    display: flex; /* Show hamburger on mobile */
+  }
+
+  .navigation {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.85);
+    padding: 20px;
+    display: none; /* Initially hidden */
+    transition: all 0.3s ease;
+  }
+
+  .navigation.activeMenu {
+    display: flex; /* ✅ Show menu when hamburger toggled */
+  }
+
+  .link,
+  .dropdownToggle,
+  .btnLoginPopup {
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .dropdownMenu {
+    position: static; /* Allow it to expand inline */
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05);
+  }
+}

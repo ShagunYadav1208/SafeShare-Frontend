@@ -8,4 +8,13 @@
     background-size: cover;
     background-position: center;
     position: relative;
+
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    .body {
+        flex-direction: column; /* 📱 Ensures better stacking if needed */
+    }
 }

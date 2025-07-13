@@ -2,6 +2,9 @@
 {
     width: 100%;
     padding: 40px;
+
+    max-width: 400px;  /* ✅ Restrict modal width for large screens */
+    margin: auto;      /* ✅ Center horizontally */
 }
 
 .wrapper .formBox
@@ -132,4 +135,32 @@
 .failed{
     color: rgb(230, 135, 135);
     text-align: center;
+}
+
+/* ========== 📱 Responsive Styling ========== */
+
+@media (max-width: 600px) {
+    .wrapper .formBox {
+        padding: 20px;     /* 📱 Reduced padding for smaller screens */
+        width: 90vw;       /* 📱 Flex width instead of fixed */
+    }
+
+    .formBox h2 {
+        font-size: 1.5em;  /* 📱 Scaled down heading */
+    }
+
+    .iconClose {
+        width: 35px;       /* 📱 Smaller tap target */
+        height: 35px;
+        font-size: 1.2em;
+    }
+
+    .btn {
+        font-size: 0.95em;
+        height: 42px;
+    }
+
+    .inputBox {
+        margin: 20px 0;    /* 📱 Tightened spacing */
+    }
 }

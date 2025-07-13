@@ -295,3 +295,120 @@
   animation: slideFadeIn 0.3s ease-out;
   overflow: hidden;
 }
+
+@media (max-width: 1200px) {
+  .card {
+    width: 180px;
+    height: 250px;
+  }
+
+  .iconBox {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 992px) {
+  .card {
+    width: 160px;
+    height: 230px;
+    padding: 15px;
+  }
+
+  .iconBox {
+    font-size: 80px;
+  }
+
+  .name {
+    font-size: 0.9rem;
+  }
+
+  .size {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .backAndName {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn {
+    font-size: 0.9em;
+    height: 40px;
+    margin: 5px;
+  }
+
+  .dangerBtn {
+    font-size: 0.9em;
+    height: 40px;
+    margin: 5px;
+  }
+
+  .cardArea {
+    margin: 10px;
+  }
+
+  .uploads {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .titleBody {
+    position: static;
+    transform: none;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 576px) {
+  .card {
+    width: 140px;
+    height: 200px;
+    padding: 12px;
+  }
+
+  .iconBox {
+    font-size: 70px;
+  }
+
+  .btn, .dangerBtn {
+    /* width: 90%; */
+    font-size: 0.85em;
+    height: 40px;
+  }
+
+  .createFolderWrapper,
+  .uploadWrapper,
+  .shareWrapper,
+  .deleteFolderWrapper,
+  .renameWrapper {
+    width: 90vw;
+    padding: 20px;
+  }
+
+  .sharedWithWrapper {
+    width: 95vw;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 400px) {
+  .title {
+    font-size: 1.2em;
+  }
+
+  .name {
+    font-size: 0.85rem;
+  }
+
+  .size {
+    font-size: 0.7rem;
+  }
+}

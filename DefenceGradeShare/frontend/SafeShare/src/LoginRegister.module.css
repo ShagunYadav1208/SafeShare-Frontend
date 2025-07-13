@@ -1,8 +1,8 @@
-.wrapper
-{
+.wrapper {
     position: relative;
-    width: 400px;
-    height: 440px;
+    width: 90vw; /* ✅ Responsive width */
+    max-width: 400px; /* ✅ Restrict max */
+    height: auto;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 20px;
@@ -14,48 +14,43 @@
     align-items: center;
     color: white;
     overflow: hidden;
-    /* transform: scale(0); */
     transition: height 0.2s ease;
+    flex-direction: column;
+    padding: 30px 20px; /* ✅ Better spacing */
 }
 
-.wrapper .formBox
-{
+.wrapper .formBox {
     width: 100%;
-    padding: 40px;
+    padding: 20px; /* ✅ Reduced for smaller screens */
 }
 
-.wrapper .formBox.login
-{
-    transition: transform 0.18s ease;
-    transform: translateX(0)
-}
-
-.wrapper.active
-{
-    height: 520px;
-}
-
-.wrapper.active .formBox.login
-{
-    transition: none;
-    transform: translateX(-400px);
-}
-
-.register
-{
-    position: absolute;
-    transition: none;
-    transform: translateX(400px);
-}
-
-.wrapper.active .formBox.register
-{
+.wrapper .formBox.login {
     transition: transform 0.18s ease;
     transform: translateX(0);
 }
 
-.iconClose
-{
+.wrapper.active {
+    height: auto; /* ✅ Dynamic height */
+}
+
+.wrapper.active .formBox.login {
+    transition: none;
+    transform: translateX(-100%);
+}
+
+.register {
+    position: absolute;
+    width: 100%;
+    transition: none;
+    transform: translateX(100%);
+}
+
+.wrapper.active .formBox.register {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+.iconClose {
     position: absolute;
     top: 0;
     right: 0;
@@ -72,24 +67,21 @@
     z-index: 1;
 }
 
-.formBox h2
-{
+.formBox h2 {
     font-size: 2em;
     color: white;
     text-align: center;
 }
 
-.inputBox
-{
+.inputBox {
     position: relative;
     width: 100%;
     height: 50px;
     border-bottom: 2px solid white;
-    margin: 30px 0;
+    margin: 20px 0; /* ✅ Adjusted for smaller screen spacing */
 }
 
-.inputBox label
-{
+.inputBox label {
     position: absolute;
     top: 50%;
     left: 5px;
@@ -100,14 +92,13 @@
     transition: 0.3s;
 }
 
-.inputBox input:focus~label, .inputBox input:valid~label
-{
+.inputBox input:focus ~ label,
+.inputBox input:valid ~ label {
     top: -5px;
     left: -5px;
 }
 
-.inputBox input
-{
+.inputBox input {
     width: 100%;
     height: 100%;
     background: transparent;
@@ -119,8 +110,7 @@
     padding: 0 35px 0 5px;
 }
 
-.inputBox .icon
-{
+.inputBox .icon {
     position: absolute;
     right: 8px;
     font-size: 1.2em;
@@ -128,35 +118,32 @@
     line-height: 57px;
 }
 
-.rememberForgot
-{
+.rememberForgot {
     font-size: 0.9em;
     color: white;
     font-weight: 500;
-    margin: -15px 0 15px;
+    margin: -10px 0 15px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap; /* ✅ Wrap on smaller screens */
+    gap: 8px;
 }
 
-.rememberForgot label input
-{
+.rememberForgot label input {
     accent-color: black;
     margin-right: 3px;
 }
 
-.rememberForgot a
-{
+.rememberForgot a {
     color: rgb(230, 135, 135);
     text-decoration: none;
 }
 
-.rememberForgot a:hover
-{
+.rememberForgot a:hover {
     text-decoration: underline;
 }
 
-.btn
-{
+.btn {
     width: 100%;
     height: 45px;
     background: white;
@@ -167,41 +154,67 @@
     font-size: 1em;
     color: black;
     font-weight: 500;
+    margin-top: 10px;
 }
 
-.btn:hover
-{
+.btn:hover {
     color: white;
     background: black;
 }
 
-.loginRegister
-{
+.loginRegister {
     font-size: 0.9em;
     color: white;
     text-align: center;
     font-weight: 500;
-    margin: 25px 0 10px;
+    margin: 20px 0 10px;
 }
 
-.registerLink, .loginLink
-{
+.registerLink,
+.loginLink {
     color: rgb(230, 135, 135);
     text-decoration: none;
     font-weight: 600;
 }
 
-.registerLink:hover, .loginLink:hover
-{
+.registerLink:hover,
+.loginLink:hover {
     text-decoration: underline;
 }
 
-.success{
+.success {
     color: rgb(130, 220, 40);
     justify-content: center;
 }
 
-.failed{
+.failed {
     color: rgb(230, 135, 135);
     text-align: center;
+}
+
+/* ✅ Mobile responsiveness */
+@media (max-width: 768px) {
+    .formBox h2 {
+        font-size: 1.6em;
+    }
+
+    .inputBox {
+        height: 45px;
+        margin: 15px 0;
+    }
+
+    .btn {
+        font-size: 0.95em;
+        height: 42px;
+    }
+
+    .loginRegister {
+        font-size: 0.85em;
+    }
+
+    .rememberForgot {
+        font-size: 0.8em;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

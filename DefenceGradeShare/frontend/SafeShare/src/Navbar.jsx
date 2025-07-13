@@ -9,6 +9,7 @@ export default function Navbar({ setDisplayLogin, sessionData, fetchSessionData 
     const navigate = useNavigate()
     const [dropdownOpen, setDropdownOpen] = useState(false)
     const dropdownRef = useRef(null)
+    const [showMenu, setShowMenu] = useState(false)
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -27,8 +28,8 @@ export default function Navbar({ setDisplayLogin, sessionData, fetchSessionData 
     }
     const handleLogout = async() => {
         try{
-            const response = await fetch(sessionData.mainURL + "/api/Logout", {
-                methond: "GET",
+            const response = await fetch(sessionData.mainURL + "/Logout", {
+                method: "GET",
                 credentials: "include"
             })
 
@@ -50,7 +51,13 @@ export default function Navbar({ setDisplayLogin, sessionData, fetchSessionData 
         <div>
             <div className = {style.header}>
                 <h2 className = {style.logo}>SafeShare</h2>
-                <nav className = {style.navigation}>
+                {/* ✅ Hamburger icon (visible only on small screens) */}
+                <div className={style.hamburger} onClick={() => setShowMenu(!showMenu)}>
+                    <div className={style.bar}></div>
+                    <div className={style.bar}></div>
+                    <div className={style.bar}></div>
+                </div>
+                <nav className = {`${style.navigation} ${showMenu ? style.activeMenu : ''}`}>
                     <NavLink className = {({isActive}) => isActive? `${style.active} ${style.link}`: `${style.link}`} to = "/">Home</NavLink>
                     <NavLink className = {({isActive}) => isActive? `${style.active} ${style.link}`: `${style.link}`} to = "/about">About</NavLink>
                     <NavLink className = {({isActive}) => isActive? `${style.active} ${style.link}`: `${style.link}`} to = "/contact">Contact</NavLink>

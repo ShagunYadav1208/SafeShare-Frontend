@@ -86,3 +86,49 @@
 .login{
     padding: 40px;
 }
+
+@media (max-width: 768px) {
+  .verifyEmailBody {
+    padding: 20px;
+    width: 95vw;
+    height: auto;
+    min-height: 80vh;
+  }
+
+  .title {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .verification {
+    padding: 20px;
+  }
+
+  .verificationText {
+    font-size: 1.1em;
+    text-align: center;
+  }
+
+  .verificationButton,
+  .loginButton {
+    width: 100%;
+    max-width: 250px;
+    height: 45px;
+    font-size: 1em;
+    margin-top: 15px;
+  }
+
+  .success,
+  .failed {
+    display: block;
+    text-align: center;
+    font-size: 0.9em;
+    padding-top: 10px;
+    word-wrap: break-word;
+  }
+
+  .login {
+    padding: 20px;
+    text-align: center;
+  }
+}

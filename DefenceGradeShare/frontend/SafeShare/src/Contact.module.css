@@ -13,14 +13,30 @@
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     color: white;
     overflow: hidden;
-    /* transform: scale(0); */
     transition: height 0.2s ease;
     padding: 40px;
+
+    flex-direction: column;
 }
 
 .title{
     color: white;
+
+    text-align: center;
+}
+
+/* 📱 Responsive tweaks */
+@media (max-width: 768px) {
+    .contactBody {
+        padding: 20px;   /* 📱 Reduce padding on small screens */
+        min-height: 80vh;
+        height: auto;    /* 📱 Let height expand naturally */
+        width: 90vw;     /* 📱 Slightly reduce width on mobile */
+    }
+
+    .title {
+        font-size: 1.5rem; /* 📱 Scale down heading size */
+    }
 }

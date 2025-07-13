@@ -2,6 +2,9 @@
 {
     width: 100%;
     padding: 40px;
+
+    max-width: 400px; /* ✅ Added for mobile-friendly fixed width */
+    margin: auto;     /* ✅ Center the box on all screens */
 }
 
 .wrapper .formBox
@@ -131,4 +134,31 @@
 .failed{
     color: rgb(230, 135, 135);
     text-align: center;
+}
+
+/* ===== 📱 Responsive Breakpoint ===== */
+@media (max-width: 600px) {
+    .wrapper .formBox {
+        padding: 20px;       /* 📱 Less padding on small devices */
+        width: 90vw;         /* 📱 Flexible width */
+    }
+
+    .formBox h2 {
+        font-size: 1.5em;     /* 📱 Slightly smaller heading */
+    }
+
+    .iconClose {
+        width: 35px;         /* 📱 Smaller close icon */
+        height: 35px;
+        font-size: 1.2em;
+    }
+
+    .btn {
+        font-size: 0.95em;   /* 📱 Font scaling */
+        height: 42px;
+    }
+
+    .inputBox {
+        margin: 20px 0;
+    }
 }

@@ -133,3 +133,48 @@
     color: rgb(230, 135, 135);
     text-align: center;
 }
+
+/* ✅ Responsive Styles for Share Modal */
+@media (max-width: 768px) {
+  .formBox {
+    padding: 20px; /* 🔧 Reduce padding for small devices */
+  }
+
+  .formBox h2 {
+    font-size: 1.5rem; /* 🔧 Shrink heading */
+  }
+
+  .inputBox {
+    margin: 20px 0;
+    height: auto;
+  }
+
+  .inputBox input {
+    font-size: 0.95rem;
+    padding-right: 10px;
+  }
+
+  .inputBox label {
+    font-size: 0.9rem;
+    left: 10px;
+  }
+
+  .inputBox .icon {
+    display: none; /* 🔧 Hide icons on smaller devices */
+  }
+
+  .btn {
+    font-size: 0.95rem;
+    height: 42px;
+  }
+
+  .iconClose {
+    width: 40px;
+    height: 40px;
+    font-size: 1.8rem;
+  }
+
+  .loginRegister {
+    font-size: 0.8rem;
+  }
+}

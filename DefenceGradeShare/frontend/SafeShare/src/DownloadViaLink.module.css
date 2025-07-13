@@ -1,5 +1,4 @@
-.downloadViaLinkBody
-{
+.downloadViaLinkBody {
     position: relative;
     margin-top: 90px;
     width: 95vw;
@@ -17,27 +16,30 @@
     padding: 40px;
 }
 
-.titleBody{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
+.titleBody {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 
-.title{
+.title {
     color: white;
     margin: 0;
+    font-size: 2rem; /* ✅ Responsive base */
 }
 
-.buttons{
+.buttons {
     position: relative;
+    margin-top: 60px; /* ✅ Give space below title on mobile */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* ✅ Wrap buttons if needed */
 }
 
-.btn
-{
-    /* width: 100%; */
+.btn {
     margin: 10px;
-    padding: 5px;
+    padding: 5px 15px;
     height: 45px;
     background: white;
     border: none;
@@ -49,24 +51,27 @@
     font-weight: 500;
 }
 
-.btn:hover
-{
+.btn:hover {
     color: white;
     background: black;
 }
 
-.fileData{
+.fileData {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.contentBody{
+.contentBody {
     margin: 10px;
     padding: 10px;
+    flex: 1 1 300px;
 }
 
-.content{
-    margin: 15px;
-    padding: 15px;
+.content {
+    margin: 15px 5px;
+    padding: 10px;
+    font-size: 1rem; /* ✅ Make content adaptive */
 }
 
 .previewContainer {
@@ -100,34 +105,76 @@
     box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
 
-.downloadModalOverlay{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Dim background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 998; /* Below the modal box */
+/* Overlay */
+.downloadModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 998;
 }
 
 /* Modal Wrapper */
-.downloadWrapper{
-  position: relative;
-  width: 400px;
-  height: auto;
-  padding: 30px;
-  background: rgba(0, 255, 38, 0.1); /* Transparent white */
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  -webkit-backdrop-filter: blur(30px);
-  backdrop-filter: blur(30px); /* Glass effect */
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-  color: white;
-  z-index: 999; /* Above the overlay */
-  transform: translate(-20px, -40px);
-  animation: slideFadeIn 0.3s ease-out;
-  overflow: hidden;
+.downloadWrapper {
+    position: relative;
+    width: 400px;
+    height: auto;
+    padding: 30px;
+    background: rgba(0, 255, 38, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(30px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    color: white;
+    z-index: 999;
+    transform: translate(-20px, -40px);
+    animation: slideFadeIn 0.3s ease-out;
+    overflow: hidden;
+}
+
+/* 📱 Mobile Responsive Tweaks */
+@media (max-width: 768px) {
+    .downloadViaLinkBody {
+        padding: 20px; /* ✅ Reduced padding on mobile */
+    }
+
+    .fileData {
+        flex-direction: column; /* ✅ Stack info and preview */
+        align-items: center;
+    }
+
+    .previewContainer {
+        min-width: 90vw;
+        max-width: 95vw;
+        min-height: 40vh;
+        max-height: 50vh;
+        padding: 10px; /* ✅ Less padding on small screens */
+    }
+
+    .downloadWrapper {
+        width: 90vw; /* ✅ Modal adapts on small screens */
+        padding: 20px;
+        transform: none;
+    }
+
+    .title {
+        font-size: 1.5rem; /* ✅ Scales down title */
+    }
+
+    .btn {
+        width: 90%;
+        font-size: 1rem;
+        margin: 8px auto;
+    }
+
+    .content {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
 }
