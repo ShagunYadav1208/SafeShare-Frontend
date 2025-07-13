@@ -113,6 +113,7 @@ export default function MyUploads({ sessionData }){
     async function GoToFolder(id, type){
         setType(type)
         navigate(`/myUploads/${id}`)
+        window.location.reload()
     }
 
     async function handleUpload(formData){
