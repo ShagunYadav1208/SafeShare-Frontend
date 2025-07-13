@@ -25,30 +25,33 @@ export default function SharedWithMe({ sessionData }){
         }
     }, [params.id])
 
-    const fetchMyUploadsData = useCallback(async() => {
+    const fetchMyUploadsData = useCallback(async(folderId) => {
         if (!sessionData.mainURL) return;
         try{
-            const response = await fetch(`${sessionData.mainURL}/api/SharedWithMe${_id ? `/${_id}` : ''}`, {
+            const response = await fetch(`${sessionData.mainURL}/api/SharedWithMe${folderId ? `/${folderId}` : ''}`, {
                 credentials: "include",
             });
             const result = await response.json()
-            setFolderName(result.folderName || "")
-            setSharedWithMe(result.files || [])
-            setParentId(result.parentId || "")
             if(!result.success && result.redirectTo){
                 navigate(`/${result.redirectTo}`)
             }
+            setFolderName(result.folderName || "")
+            setSharedWithMe(result.files || [])
+            setParentId(result.parentId || "")
+            setId(result._id || "")
             console.log("SharedWithMe are fetched")
         }
         catch(err){
             console.log("Failed to Fetch")
             return { message: "SharedWithMe data cannot be fetched" + err }
         }
-    }, [sessionData.mainURL, _id, navigate])
+    }, [sessionData.mainURL, navigate])
 
     useEffect(() => {
-        fetchMyUploadsData()
-    }, [sessionData.mainURL, _id, navigate, fetchMyUploadsData])
+        const folderId = params.id || "";
+        setId(folderId);
+        fetchMyUploadsData(folderId)
+    }, [params.id, fetchMyUploadsData])
 
     function GetFolderSize(files){
         return files.reduce((total, file) => {
