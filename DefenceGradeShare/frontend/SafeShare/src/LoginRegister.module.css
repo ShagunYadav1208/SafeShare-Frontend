@@ -1,7 +1,7 @@
 .wrapper {
     position: relative;
-    width: 90vw; /* ✅ Responsive width */
-    max-width: 400px; /* ✅ Restrict max */
+    width: 90vw;
+    max-width: 400px; 
     height: auto;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.5);
@@ -30,7 +30,7 @@
 }
 
 .wrapper.active {
-    height: auto; /* ✅ Dynamic height */
+    height: 520px;
 }
 
 .wrapper.active .formBox.login {
